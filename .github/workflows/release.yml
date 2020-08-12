@@ -1,14 +1,12 @@
-name: test
+name: Release
 
 on:
-  push:
-    branches:
-      - master
+  release:
+    types: [published]
 
 jobs:
-  test:
+  release:
     runs-on: ubuntu-latest
-    if: "contains(github.event.head_commit.message, '[CI] Publish get-ebs-env-variables.js')"
     steps:
       - name: Get AWS Elastic Beanstalk Environment's variables
         id: ebs-env
