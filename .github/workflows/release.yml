@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Get AWS Elastic Beanstalk Environment's variables
         id: ebs-env
-        uses: Amraneze/get-ebs-env-variables@v2.0.1
+        uses: Amraneze/get-ebs-env-variables@v2.0.2
         with:
           region: ${{ secrets.AWS_REGION }}
           environment_name: ${{ secrets.ENVIRONMENT_NAME }}
