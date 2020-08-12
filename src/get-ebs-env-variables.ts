@@ -106,10 +106,7 @@ function getEBSEnvVariables({
         process.exit(1);
       }
       if ((data.ConfigurationSettings || []).length !== 0) {
-        const [
-          configuration,
-          ..._
-        ]: Array<ElasticBeanstalk.Types.ConfigurationSettingsDescription> =
+        const [configuration]: Array<ElasticBeanstalk.Types.ConfigurationSettingsDescription> =
           data.ConfigurationSettings || [];
         const { OptionSettings }: any = configuration;
         const envVariables = OptionSettings.filter(
