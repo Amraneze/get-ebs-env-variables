@@ -21,10 +21,6 @@ inputs:
     description: "AWS Elastic Beanstalk environment's name."
     required: true
 
-outputs:
-  ebs_env_var:
-    description: 'The current environment variables of the application.'
-
 branding:
   icon: 'arrow-up'
   color: 'green'

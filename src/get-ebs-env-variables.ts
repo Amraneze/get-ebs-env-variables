@@ -109,13 +109,12 @@ function getEBSEnvVariables({
         const [configuration]: Array<ElasticBeanstalk.Types.ConfigurationSettingsDescription> =
           data.ConfigurationSettings || [];
         const { OptionSettings }: any = configuration;
-        const envVariables = OptionSettings.filter(
+        OptionSettings.filter(
           (option: ElasticBeanstalk.Types.ConfigurationOptionSetting) =>
             option.Namespace === AWSEbsEnvType,
-        ).map((option: ElasticBeanstalk.Types.ConfigurationOptionSetting) => ({
-          [`${option.OptionName}`]: `${option.Value}`,
-        }));
-        setOutput('ebs_env_var', envVariables);
+        ).foreach((option: ElasticBeanstalk.Types.ConfigurationOptionSetting) =>
+          setOutput(`${option.OptionName}`, option.Value),
+        );
         process.exit(0);
       }
       console.error(
