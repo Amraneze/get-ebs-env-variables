@@ -1,0 +1,23 @@
+name: test
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    if: "contains(github.event.head_commit.message, '[CI] Publish get-ebs-env-variables.js')"
+    steps:
+      - name: Get AWS Elastic Beanstalk Environment's variables
+        id: ebs-env
+        uses: Amraneze/get-ebs-env-variables@v2.0.1
+        with:
+          region: ${{ secrets.AWS_REGION }}
+          environment_name: ${{ secrets.ENVIRONMENT_NAME }}
+          application_name: ${{ secrets.APPLICATION_NAME }}
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Display AWS Elastic Beanstalk Environment's variables
+        run: echo ${{ steps.ebs-env.outputs.ebs_env_var }}
