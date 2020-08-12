@@ -112,7 +112,7 @@ function getEBSEnvVariables({
         OptionSettings.filter(
           (option: ElasticBeanstalk.Types.ConfigurationOptionSetting) =>
             option.Namespace === AWSEbsEnvType,
-        ).foreach((option: ElasticBeanstalk.Types.ConfigurationOptionSetting) =>
+        ).forEach((option: ElasticBeanstalk.Types.ConfigurationOptionSetting) =>
           setOutput(`${option.OptionName}`, option.Value),
         );
         process.exit(0);
