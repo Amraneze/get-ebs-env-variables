@@ -1,16 +1,15 @@
 name: "Get Elastic Beanstalk Environment's variables"
 description: "Get the AWS Elastic Beanstalk environment's variables to use them from the output of this action."
-author: "Amrane Ait Zeouay"
+author: 'Amrane Ait Zeouay'
 runs:
-  using: "node12"
-  pre: "npm ci"
-  main: "get-ebs-env-variables.js"
+  using: 'node12'
+  main: 'get-ebs-env-variables.js'
 inputs:
   aws_access_key:
-    description: "AWS Access Key."
+    description: 'AWS Access Key.'
     required: true
   aws_secret_key:
-    description: "AWS Secret Key."
+    description: 'AWS Secret Key.'
     required: true
   region:
     description: "AWS Environment's Region."
@@ -24,8 +23,8 @@ inputs:
 
 outputs:
   ebs_env_var:
-    description: "The current environment variables of the application."
+    description: 'The current environment variables of the application.'
 
 branding:
-  icon: "arrow-up"
-  color: "green"
+  icon: 'arrow-up'
+  color: 'green'
