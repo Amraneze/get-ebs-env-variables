@@ -1,0 +1,35 @@
+name: master
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    env:
+      CURRENT_BRANCH: master
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: npm install
+      - name: Lint the project
+        run: npm run lint
+      - name: Build the project
+        run: npm run build
+      - name: Upload a build artifact to master
+        if: success()
+        run: |
+          cp build/get-ebs-env-variables.js get-ebs-env-variables.js
+          git config --local user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git config --local user.name "${GITHUB_ACTOR}"
+          git add get-ebs-env-variables.js
+          git commit -m '[CI] Publish get-ebs-env-variables.js'
+          git push
