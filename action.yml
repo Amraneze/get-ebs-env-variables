@@ -1,15 +1,15 @@
 name: "Get Elastic Beanstalk Environment's variables"
 description: "Get the AWS Elastic Beanstalk environment's variables to use them from the output of this action."
-author: 'Amrane Ait Zeouay'
+author: "Amrane Ait Zeouay"
 runs:
-  using: 'node12'
-  main: 'get-ebs-env-variables.js'
+  using: "node12"
+  main: "get-ebs-env-variables.js"
 inputs:
   aws_access_key:
-    description: 'AWS Access Key.'
+    description: "AWS Access Key."
     required: true
   aws_secret_key:
-    description: 'AWS Secret Key.'
+    description: "AWS Secret Key."
     required: true
   region:
     description: "AWS Environment's Region."
@@ -20,7 +20,13 @@ inputs:
   environment_name:
     description: "AWS Elastic Beanstalk environment's name."
     required: true
+  use_env_file:
+    description: "True if we should export a env file."
+    required: false
+  file_path:
+    description: "The name and path of the env file to export."
+    required: false
 
 branding:
-  icon: 'arrow-up'
-  color: 'green'
+  icon: "arrow-up"
+  color: "green"
