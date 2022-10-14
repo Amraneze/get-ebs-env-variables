@@ -114,4 +114,5 @@ dist
 # TS build
 build
 
+.idea
 # End of https://www.toptal.com/developers/gitignore/api/node
