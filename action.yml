@@ -2,7 +2,7 @@ name: "Get Elastic Beanstalk Environment's variables"
 description: "Get the AWS Elastic Beanstalk environment's variables to use them from the output of this action."
 author: "Amrane Ait Zeouay"
 runs:
-  using: "node12"
+  using: "node16"
   main: "get-ebs-env-variables.js"
 inputs:
   aws_access_key:
