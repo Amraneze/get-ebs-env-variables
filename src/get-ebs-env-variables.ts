@@ -123,9 +123,12 @@ function getEBSEnvVariables({
         const configurationOptions = OptionSettings.filter(
           (option: ElasticBeanstalk.Types.ConfigurationOptionSetting) =>
             option.Namespace === AWSEbsEnvType,
-        ).map((option: ElasticBeanstalk.Types.ConfigurationOptionSetting) => ({
-          [`${option.OptionName}`]: option.Value,
-        }));
+        ).map((option: ElasticBeanstalk.Types.ConfigurationOptionSetting) => {
+          setOutput(`${option.OptionName}`, option.Value)
+          return{
+            [`${option.OptionName}`]: option.Value
+          }
+        });
         if (useEnvFile) {
           // const fs = await import('fs');
           // Use writeFileSync instead of writeFile
@@ -144,8 +147,6 @@ function getEBSEnvVariables({
             });
             process.exit(1);
           }
-        } else {
-          Object.entries(configurationOptions).forEach(([key, value]) => setOutput(key, value));
         }
         process.exit(0);
       }
