@@ -120,12 +120,14 @@ function getEBSEnvVariables({
         const [configuration]: Array<ElasticBeanstalk.Types.ConfigurationSettingsDescription> =
           data.ConfigurationSettings || [];
         const { OptionSettings }: any = configuration;
+        console.log("OptionSettings: ",JSON.stringify(OptionSettings))
         const configurationOptions = OptionSettings.filter(
           (option: ElasticBeanstalk.Types.ConfigurationOptionSetting) =>
             option.Namespace === AWSEbsEnvType,
         ).map((option: ElasticBeanstalk.Types.ConfigurationOptionSetting) => ({
           [`${option.OptionName}`]: option.Value,
         }));
+        console.log("configurationOptions: ",JSON.stringify(configurationOptions))
         if (useEnvFile) {
           // const fs = await import('fs');
           // Use writeFileSync instead of writeFile
